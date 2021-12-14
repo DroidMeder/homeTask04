@@ -23,7 +23,7 @@ public class Main{
                     e.printStackTrace();
                 }
             }
-            System.out.println(listA);
+            System.out.println("Содержания listA: "+listA);
             for (int i = 0; i < 5; i++) {
                 try {
                     listB.add((new BufferedReader(new InputStreamReader(System.in))).readLine());
@@ -31,7 +31,8 @@ public class Main{
                     e.printStackTrace();
                 }
             }
-            System.out.println(listB);
+            System.out.println("Содержания listB: "+listB);
+            System.out.println();
             break;
         }
         Collections.reverse(listB);
@@ -39,15 +40,18 @@ public class Main{
             listC.add(listA.get(i));
             listC.add(listB.get(i));
         }
-        Collections.sort(listC, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.length() - o2.length();
-            }
-        });
+        System.out.println("Содержания listC без сортировки: "+listC);
+        System.out.println();
+        listC.sort(new ListComparator());
+        System.out.println("listC после сортировки: "+listC);
 
+    }
+}
 
-        System.out.println(listC);
+class ListComparator implements Comparator<String>{
 
+    @Override
+    public int compare(String o1, String o2) {
+        return o1.length()-o2.length();
     }
 }
